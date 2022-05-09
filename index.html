@@ -42,8 +42,6 @@
             const kanchilMarker = document.querySelector("#kanchil")
             const lapisMarker = document.querySelector("#lapis")
             const sagoMarker = document.querySelector("#sago")
-            
-            
 
             kanchilMarker.addEventListener('markerFound', () => 
             {
@@ -69,10 +67,10 @@
                     myText.innerHTML = "You found kanchil!"
                 } else if (this.el.id == "lapis")
                 {
-                    myText.innerHTML = "This is a kuih lapis"
+                    myText.innerHTML = "This is kuih lapis"
                 } else if (this.el.id == "sago")
                 {
-                    myText.innerHTML = "This is a kuih sago"
+                    myText.innerHTML = "This is kuih sago gula malaka"
                 } else
                 {
                     myText.innerHTML = "Unrecognised marker"
@@ -80,7 +78,7 @@
 
             })
             
-
+            //el.sceneEl will listen to all elements in the scene as compared to any particular element like above
             this.el.sceneEl.addEventListener('markerLost', () => {
                 myText.innerHTML = "Please scan a marker"
             })
@@ -101,7 +99,7 @@
         <a-marker markerhandler type='pattern' url='textures/pattern-kanchil.patt' id="kanchil"
             raycaster="objects: .clickable" emitevents="true" cursor="fuse: false; rayOrigin: mouse;">
 
-            <a-entity gltf-model=”url(models/chibi-kanchil.gltf)” scale="0.6 0.6 0.6" rotation="-90 -90 0" class="clickable" gesture-handler></a-entity>
+            <a-entity gltf-model=”url(models/chibi-kanchil.gltf)” scale="0.6 0.6 0.6" rotation="-90 -90 90" class="clickable" gesture-handler></a-entity>
         </a-marker>
 
         <a-marker markerhandler type='pattern' url='textures/pattern-kueh-lapis.patt' id="lapis"
