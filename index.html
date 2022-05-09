@@ -37,13 +37,30 @@
     {
         init: function () 
         {
-            /*    
+              
             const kanchilMarker = document.querySelector("#kanchil")
             const lapisMarker = document.querySelector("#lapis")
             const sagoMarker = document.querySelector("#sago")
-            */
+            
 
             let myText = document.querySelector("#textContent")
+
+            kanchilMarker.addEventListener('markerFound', () => 
+            {
+                myText.innerHTML = "You found kanchil!"
+            })
+
+            lapisMarker.addEventListener('markerFound', () => 
+            {
+                myText.innerHTML = "This is kuih lapis"
+            })
+
+            sagoMarker.addEventListener('markerFound', () => 
+            {
+                myText.innerHTML = "This is kuih sago gula malaka"
+            })
+
+            /*
 
             this.el.sceneEl.addEventListener('markerFound', () => {
                 if (this.el.sceneEl.id == "kanchil")
@@ -61,6 +78,10 @@
                 }
 
             })
+
+            */
+
+
 
             this.el.addEventListener('markerLost', () => {
                 myText.innerHTML = "Please scan a marker"
