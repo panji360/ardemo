@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AR demo</title>
 </head>
-<script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>
+<script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
 <!-- include ar.js for A-Frame -->
-<script src="https://jeromeetienne.github.io/AR.js/aframe/build/aframe-ar.js"></script>
+<script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
 <script src="https://raw.githack.com/fcor/arjs-gestures/master/dist/gestures.js"></script>
 
 <body style='margin : 0px; overflow: hidden;'>
-  <a-scene embedded arjs='trackingMethod: best; sourceType: webcam;' renderer="gammaOutput: true; logarithmicDepthBuffer: true" vr-mode-ui="enabled: false" gesture-detector>
+  <a-scene embedded arjs='trackingMethod: best; sourceType: webcam; debugUIEnabled: false;' renderer="colorManagement: true; logarithmicDepthBuffer: true" vr-mode-ui="enabled: false" gesture-detector>
        
         <!-- handle marker with your own pattern -->
 
