@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AR demo</title>
+</head>
+<script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>
+<!-- include ar.js for A-Frame -->
+<script src="https://jeromeetienne.github.io/AR.js/aframe/build/aframe-ar.js"></script>
+
+<script src="hammer.min.js"></script>
+
+<script>
+    AFRAME.registerComponent("controller", {
+        init: function () {
+            this.modelVisible = false;
+            // track markerFound/markerLost
+            this.el.addEventListener("markerFound", () => this.modelVisible = true);
+            this.el.addEventListener("markerLost", () => this.modelVisible = false);
+            // grab the model reference
+            document.querySelector("[gltf-model]").addEventListener("model-loaded", evt => {
+                this.mesh = evt.detail.model
+            })
+            // hammerjs input helper
+            const hammertime = new Hammer(document.body);
+
+            // scale
+            // scale is tricky, because it resets
+            var currentScale = 1;
+            hammertime.get('pinch').set({ enable: true });
+            hammertime.on("pinchstart", (ev) => {
+                currentScale = this.mesh.scale.x;
+            })
+            hammertime.on("pinchmove", (ev) => {
+                if (!this.modelVisible) return;
+                this.mesh.scale.multiplyScalar(0).addScalar(ev.scale * currentScale);
+            });
+ 
+            // rotation
+            // pan left/right for rotation
+            this.isPanning = false;
+            hammertime.on("panleft", () => {
+                if (!this.modelVisible) return;
+                this.isPanning = true
+                this.mesh.rotation.y -= 4 * Math.PI / 360;
+            })
+           
+            hammertime.on("panright", () => {
+                if (!this.modelVisible) return;
+                this.isPanning = true
+                this.mesh.rotation.y += 4 * Math.PI / 360;
+            })
+
+            hammertime.on("panup", () => {
+                if (!this.modelVisible) return;
+                this.isPanning = true
+                this.mesh.rotation.x -= 4 * Math.PI / 360;
+            })
+
+            hammertime.on("pandown", () => {
+                if (!this.modelVisible) return;
+                this.isPanning = true
+                this.mesh.rotation.x += 4 * Math.PI / 360;
+            })
+
+
+            hammertime.on("panend", () => this.isPanning = false)
+            hammertime.on("pancancel", () => this.isPanning = false)
+
+            hammertime.on("swipeleft",  ({velocity}) => {
+                if (!this.modelVisible) return;
+                this.swipeVelocity = velocity
+            })
+            hammertime.on("swiperight", ({velocity}) => {
+                if (!this.modelVisible) return;
+                this.swipeVelocity = velocity
+            })
+            hammertime.on("swipeup",  ({velocity}) => {
+                if (!this.modelVisible) return;
+                this.swipeVelocity = velocity
+            })
+            hammertime.on("swipedown", ({velocity}) => {
+                if (!this.modelVisible) return;
+                this.swipeVelocity = velocity
+            })
+        },
+        tick: function() {
+            if (!(this.modelVisible && this.swipeVelocity &&!this.isPanning)) return;
+            this.mesh.rotation.y += this.swipeVelocity * 4 * Math.PI / 360;
+            this.mesh.rotation.x += this.swipeVelocity * 4 * Math.PI / 360;
+            this.swipeVelocity *= 0.93;
+            if (Math.abs(this.swipeVelocity) <= 0.1) this.swipeVelocity = 0;
+        }
+    })
+</script>
+
+<body style='margin : 0px; overflow: hidden;'>
+  <a-scene embedded arjs='trackingMethod: best; sourceType: webcam;' renderer="gammaOutput: true" vr-mode-ui="enabled: false">
+       
+        <!-- handle marker with your own pattern -->
+
+        <a-marker type='pattern' url='textures/pattern-kanchil.patt' controller>
+            <a-entity gltf-model=”url(models/chibi-kanchil.gltf)” rotation="0 180 0"></a-entity>
+            <a-text rotation="-90 0 0" position="-1 -3 1" value="You found kanchil!"></a-text>
+        </a-marker>
+
+        <a-marker type='pattern' url='textures/pattern-kueh-lapis.patt' controller>
+            <a-entity gltf-model=”url(models/kueh-lapis.gltf)” rotation="-90 0 0"></a-entity>
+            <a-text rotation="-90 0 0" position="-1 -3 1" value="Kueh lapis"></a-text>
+        </a-marker>
+
+        <a-marker type='pattern' url='textures/pattern-kueh-sago.patt' controller>
+            <a-entity gltf-model=”url(models/kueh-sago.gltf)” rotation="-90 0 0"></a-entity>
+            <a-text rotation="-90 0 0" position="-1 -3 1" value="Kueh sago"></a-text>
+        </a-marker>
+
+         <!-- handle marker with hiro preset -->
+        <a-marker preset='hiro' controller>
+            <a-box position='0 0.5 0' material='color: green;'></a-box>
+            <a-text rotation="-90 0 0" position="-1 -3 1" value="Hello, World!"></a-text>
+        </a-marker>
+
+        <!-- add a simple camera -->
+        <a-entity camera></a-entity>
+  </a-scene>
+</body>
+</html>
