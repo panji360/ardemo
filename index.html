@@ -45,14 +45,14 @@
 
             let myText = document.querySelector("#textContent")
 
-            this.el.addEventListener('markerFound', () => {
-                if (this.el.id == "kanchil")
+            this.el.sceneEl.addEventListener('markerFound', () => {
+                if (this.el.sceneEl.id == "kanchil")
                 {
                     myText.innerHTML = "You found kanchil!"
-                } else if (this.el.id == "lapis")
+                } else if (this.el.sceneEl.id == "lapis")
                 {
                     myText.innerHTML = "This is a kuih lapis"
-                } else if (this.el.id == "sago")
+                } else if (this.el.sceneEl.id == "sago")
                 {
                     myText.innerHTML = "This is a kuih sago"
                 } else
@@ -89,14 +89,12 @@
             raycaster="objects: .clickable" emitevents="true" cursor="fuse: false; rayOrigin: mouse;">
 
             <a-entity gltf-model=”url(models/kueh-lapis.gltf)” scale="0.5 0.5 0.5" rotation="-90 0 0" class="clickable" gesture-handler></a-entity>
-            <a-text rotation="-90 0 0" position="-1 -3 1" value="Kueh lapis" class="clickable" gesture-handler></a-text>
         </a-marker>
 
         <a-marker type='pattern' url='textures/pattern-kueh-sago.patt' id="sago"
             raycaster="objects: .clickable" emitevents="true" cursor="fuse: false; rayOrigin: mouse;">
 
             <a-entity gltf-model=”url(models/kueh-sago.gltf)” rotation="-90 0 0" class="clickable" gesture-handler></a-entity>
-            <a-text rotation="-90 0 0" position="-1 -3 1" value="Kueh sago"></a-text>
         </a-marker>
 
         
