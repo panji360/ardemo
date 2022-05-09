@@ -71,6 +71,9 @@
                 } else if (this.el.id == "sago")
                 {
                     myText.innerHTML = "This is kuih sago gula malaka"
+                } else if (this.el.id == "ondeh")
+                {
+                    myText.innerHTML = "This is ondeh-ondeh"
                 } else
                 {
                     myText.innerHTML = "Unrecognised marker"
@@ -112,6 +115,12 @@
             raycaster="objects: .clickable" emitevents="true" cursor="fuse: false; rayOrigin: mouse;">
 
             <a-entity gltf-model=”url(models/kueh-sago.gltf)” rotation="-90 0 0" class="clickable" gesture-handler></a-entity>
+        </a-marker>
+
+        <a-marker markerhandler type='pattern' url='textures/pattern-ondeh.patt' id="ondeh"
+            raycaster="objects: .clickable" emitevents="true" cursor="fuse: false; rayOrigin: mouse;">
+
+            <a-entity gltf-model=”url(models/ondeh.gltf)” rotation="-90 0 0" class="clickable" gesture-handler></a-entity>
         </a-marker>
 
         
