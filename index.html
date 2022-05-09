@@ -37,32 +37,33 @@
     {
         init: function () 
         {
+            /*    
             const kanchilMarker = document.querySelector("#kanchil")
             const lapisMarker = document.querySelector("#lapis")
             const sagoMarker = document.querySelector("#sago")
+            */
 
             let myText = document.querySelector("#textContent")
-
-            /*
-            kanchilMarker.addEventListener('markerFound', () => 
-            {
-                myText.innerHTML = "You found kanchil!"
-            })
-            */
 
             this.el.addEventListener('markerFound', () => {
                 if (this.el.id == "kanchil")
                 {
                     myText.innerHTML = "You found kanchil!"
+                } else if (this.el.id == "lapis")
+                {
+                    myText.innerHTML = "This is a kuih lapis"
+                } else if (this.el.id == "sago")
+                {
+                    myText.innerHTML = "This is a kuih sago"
                 } else
                 {
-                    myText.innerHTML = "others"
+                    myText.innerHTML = "Unrecognised marker"
                 }
 
             })
 
             this.el.addEventListener('markerLost', () => {
-                myText.innerHTML = "Marker?? need a marker"
+                myText.innerHTML = "Please scan a marker"
             })
 
         }
@@ -72,7 +73,7 @@
 <body style='margin : 0px; overflow: hidden;'>
 
     <div class="info-text" id="textBox">
-        <div><p id="textContent">marker marker</p></div>
+        <div><p id="textContent">Please scan a marker</p></div>
     </div>
 
     <a-scene embedded arjs='trackingMethod: best; sourceType: webcam; debugUIEnabled: false;' 
