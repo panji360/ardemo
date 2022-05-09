@@ -19,6 +19,7 @@
         left: 0;
         background-color: rgba(15, 61, 185, 0.8);
         z-index: 9999;
+        display: flex;
         justify-content: center;
         align-items: center;
     }
@@ -35,12 +36,7 @@
     AFRAME.registerComponent('markerhandler', {
       init: function () {
         this.el.sceneEl.addEventListener('markerFound', () => {
-            var x = document.getElementById("textBox");
-            if (x.style.display === "none") {
-                x.style.display = "flex";
-            } else {
-                x.style.display = "none";
-            }
+            document.getElementById("textContent").innerHTML = "You found kanchil!";
         })
       }
     });
