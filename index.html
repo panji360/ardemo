@@ -33,38 +33,54 @@
 </style>
 
 <script>
-    AFRAME.registerComponent('markerhandler', {
-      init: function () {
+    AFRAME.registerComponent('markerhandler', 
+    {
+        init: function () 
+        {
+            const kanchilMarker = document.querySelector("#kanchil");
+            const lapisMarker = document.querySelector("#lapis");
+            const sagoMarker = document.querySelector("#sago");
+
+            let myText = document.querySelector("#textContent")
+
+            kanchilMarker.addEventListener('markerFound', () => 
+            {
+                myText.innerHTML = "You found kanchil!";
+            })
+
+
+            /*
         this.el.sceneEl.addEventListener('markerFound', () => {
             document.getElementById("textContent").innerHTML = "You found kanchil!";
-        })
-      }
+            })
+            */
+        }
     });
 </script>
 
 <body style='margin : 0px; overflow: hidden;'>
 
     <div class="info-text" id="textBox">
-        <div><p id="textContent">This is an info about...</p></div>
+        <div><p id="textContent">Please scan a marker</p></div>
     </div>
 
     <a-scene embedded arjs='trackingMethod: best; sourceType: webcam; debugUIEnabled: false;' 
         renderer="colorManagement: true; logarithmicDepthBuffer: true" vr-mode-ui="enabled: false" gesture-detector>
 
-        <a-marker markerhandler type='pattern' url='textures/pattern-kanchil.patt' 
+        <a-marker markerhandler type='pattern' url='textures/pattern-kanchil.patt' id="kanchil"
             raycaster="objects: .clickable" emitevents="true" cursor="fuse: false; rayOrigin: mouse;">
 
             <a-entity gltf-model=”url(models/chibi-kanchil.gltf)” scale="0.6 0.6 0.6" rotation="0 180 0" class="clickable" gesture-handler></a-entity>
         </a-marker>
 
-        <a-marker type='pattern' url='textures/pattern-kueh-lapis.patt' 
+        <a-marker type='pattern' url='textures/pattern-kueh-lapis.patt' id="lapis"
             raycaster="objects: .clickable" emitevents="true" cursor="fuse: false; rayOrigin: mouse;">
 
             <a-entity gltf-model=”url(models/kueh-lapis.gltf)” scale="0.5 0.5 0.5" rotation="-90 0 0" class="clickable" gesture-handler></a-entity>
             <a-text rotation="-90 0 0" position="-1 -3 1" value="Kueh lapis" class="clickable" gesture-handler></a-text>
         </a-marker>
 
-        <a-marker type='pattern' url='textures/pattern-kueh-sago.patt' 
+        <a-marker type='pattern' url='textures/pattern-kueh-sago.patt' id="sago"
             raycaster="objects: .clickable" emitevents="true" cursor="fuse: false; rayOrigin: mouse;">
 
             <a-entity gltf-model=”url(models/kueh-sago.gltf)” rotation="-90 0 0" class="clickable" gesture-handler></a-entity>
