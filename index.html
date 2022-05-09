@@ -42,7 +42,6 @@
             const lapisMarker = document.querySelector("#lapis")
             const sagoMarker = document.querySelector("#sago")
             
-
             let myText = document.querySelector("#textContent")
 
             kanchilMarker.addEventListener('markerFound', () => 
@@ -61,6 +60,7 @@
             })
 
             /*
+            this doesn't work, but if we remove sceneEl and just use this.el, it only works for the first marker
 
             this.el.sceneEl.addEventListener('markerFound', () => {
                 if (this.el.sceneEl.id == "kanchil")
@@ -78,12 +78,9 @@
                 }
 
             })
-
             */
 
-
-
-            this.el.addEventListener('markerLost', () => {
+            this.el.sceneEl.addEventListener('markerLost', () => {
                 myText.innerHTML = "Please scan a marker"
             })
 
