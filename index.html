@@ -50,8 +50,8 @@
             })
             */
 
-            this.el.sceneEl.addEventListener('markerFound', () => {
-                if (this.el.sceneEl.id == "kanchil")
+            this.el.addEventListener('markerFound', () => {
+                if (this.el.id == "kanchil")
                 {
                     myText.innerHTML = "You found kanchil!"
                 } else
@@ -61,8 +61,8 @@
 
             })
 
-            this.el.sceneEl.addEventListener('markerLost', () => {
-                myText.innerHTML = "Marker??"
+            this.el.addEventListener('markerLost', () => {
+                myText.innerHTML = "Marker?? need a marker"
             })
 
         }
@@ -72,7 +72,7 @@
 <body style='margin : 0px; overflow: hidden;'>
 
     <div class="info-text" id="textBox">
-        <div><p id="textContent">marker</p></div>
+        <div><p id="textContent">marker marker</p></div>
     </div>
 
     <a-scene embedded arjs='trackingMethod: best; sourceType: webcam; debugUIEnabled: false;' 
