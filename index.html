@@ -37,25 +37,36 @@
     {
         init: function () 
         {
-            const kanchilMarker = document.querySelector("#kanchil");
-            const lapisMarker = document.querySelector("#lapis");
-            const sagoMarker = document.querySelector("#sago");
+            const kanchilMarker = document.querySelector("#kanchil")
+            const lapisMarker = document.querySelector("#lapis")
+            const sagoMarker = document.querySelector("#sago")
 
             let myText = document.querySelector("#textContent")
 
+            /*
             kanchilMarker.addEventListener('markerFound', () => 
             {
-                myText.innerHTML = "You found kanchil!";
-            })
-
-
-            /*
-        this.el.sceneEl.addEventListener('markerFound', () => {
-            document.getElementById("textContent").innerHTML = "You found kanchil!";
+                myText.innerHTML = "You found kanchil!"
             })
             */
+
+            this.el.sceneEl.addEventListener('markerFound', () => {
+                if (this.id == "kanchil")
+                {
+                    myText.innerHTML = "You found kanchil!"
+                } else
+                {
+                    myText.innerHTML = "others"
+                }
+
+            })
+
+            this.el.sceneEl.addEventListener('markerLost', () => {
+                myText.innerHTML = "Please scan a marker"
+            })
+
         }
-    });
+    })
 </script>
 
 <body style='margin : 0px; overflow: hidden;'>
