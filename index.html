@@ -19,7 +19,6 @@
         left: 0;
         background-color: rgba(15, 61, 185, 0.8);
         z-index: 9999;
-        display: flex;
         justify-content: center;
         align-items: center;
     }
@@ -32,16 +31,31 @@
 
 </style>
 
+<script>
+    AFRAME.registerComponent('markerhandler', {
+      init: function () {
+        this.el.sceneEl.addEventListener('markerFound', () => {
+            var x = document.getElementById("textBox");
+            if (x.style.display === "none") {
+                x.style.display = "flex";
+            } else {
+                x.style.display = "none";
+            }
+        })
+      }
+    });
+</script>
+
 <body style='margin : 0px; overflow: hidden;'>
 
-    <div class="info-text">
+    <div class="info-text" id="textBox">
         <div><p id="textContent">This is an info about...</p></div>
     </div>
 
     <a-scene embedded arjs='trackingMethod: best; sourceType: webcam; debugUIEnabled: false;' 
         renderer="colorManagement: true; logarithmicDepthBuffer: true" vr-mode-ui="enabled: false" gesture-detector>
 
-        <a-marker type='pattern' url='textures/pattern-kanchil.patt' 
+        <a-marker markerhandler type='pattern' url='textures/pattern-kanchil.patt' 
             raycaster="objects: .clickable" emitevents="true" cursor="fuse: false; rayOrigin: mouse;">
 
             <a-entity gltf-model=”url(models/chibi-kanchil.gltf)” scale="0.6 0.6 0.6" rotation="0 180 0" class="clickable" gesture-handler></a-entity>
