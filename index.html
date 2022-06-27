@@ -68,12 +68,18 @@
                 } else if (this.el.id == "lapis")
                 {
                     myText.innerHTML = "This is kuih lapis"
-                } else if (this.el.id == "sago")
+                } else if (this.el.id == "ketan")
                 {
-                    myText.innerHTML = "This is kuih sago gula malaka"
+                    myText.innerHTML = "This is tape ketan"
                 } else if (this.el.id == "ondeh")
                 {
                     myText.innerHTML = "This is ondeh-ondeh"
+                }  else if (this.el.id == "dodol")
+                {
+                    myText.innerHTML = "This is dodol"
+                } else if (this.el.id == "wajik")
+                {
+                    myText.innerHTML = "This is wajik"
                 } else
                 {
                     myText.innerHTML = "Unrecognised marker"
@@ -111,16 +117,28 @@
             <a-entity gltf-model=”url(models/kueh-lapis.gltf)” scale="0.5 0.5 0.5" rotation="-90 0 0" class="clickable" gesture-handler></a-entity>
         </a-marker>
 
-        <a-marker markerhandler type='pattern' url='textures/pattern-kueh-sago.patt' id="sago"
+        <a-marker markerhandler type='pattern' url='textures/pattern-tape-ketan.patt' id="ketan"
             raycaster="objects: .clickable" emitevents="true" cursor="fuse: false; rayOrigin: mouse;">
 
-            <a-entity gltf-model=”url(models/kueh-sago.gltf)” rotation="-90 0 0" class="clickable" gesture-handler></a-entity>
+            <a-entity gltf-model=”url(models/tape-ketan.gltf)” rotation="-90 0 0" class="clickable" gesture-handler></a-entity>
         </a-marker>
 
         <a-marker markerhandler type='pattern' url='textures/pattern-ondeh2.patt' id="ondeh"
             raycaster="objects: .clickable" emitevents="true" cursor="fuse: false; rayOrigin: mouse;">
 
             <a-entity gltf-model=”url(models/ondeh.gltf)” rotation="-90 0 0" class="clickable" gesture-handler></a-entity>
+        </a-marker>
+
+        <a-marker markerhandler type='pattern' url='textures/pattern-dodol.patt' id="dodol"
+            raycaster="objects: .clickable" emitevents="true" cursor="fuse: false; rayOrigin: mouse;">
+
+            <a-entity gltf-model=”url(models/dodol.gltf)” rotation="-90 0 0" class="clickable" gesture-handler></a-entity>
+        </a-marker>
+
+        <a-marker markerhandler type='pattern' url='textures/pattern-wajik.patt' id="wajik"
+            raycaster="objects: .clickable" emitevents="true" cursor="fuse: false; rayOrigin: mouse;">
+
+            <a-entity gltf-model=”url(models/wajik.gltf)” rotation="-90 0 0" class="clickable" gesture-handler></a-entity>
         </a-marker>
 
         
